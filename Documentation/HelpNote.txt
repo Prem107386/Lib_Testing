@@ -1,0 +1,28 @@
+﻿*****Tfg.HR.PM_ReportingLineUpdate_PC******
+
+Status **
+Business Exception 
+1."Position Not Found"
+2."Parent Position Not Found"
+3."Action Button Disabled"
+4."Change Request Completed But Not Updated In EBS" **
+"Change Request Completed But Failed to Fetch Request Status"
+5."Change Request "+RequestApprovalState
+6."Effective Date Is Back Dated"
+7."Change Request Completed But Error In Fetching Position From EBS"
+Completed
+"Change Approved, Position Updated by BOT in EBS"
+
+Sucess
+1."Change Request Submitted"
+
+Completion Status coulmn Status 
+1. None
+2. Change Request Submitted
+3.
+
+Error & Status on Update Parent Position in EBS
+1. Position Not Found (EBS)
+2. Parent Position Not Found (EBS)
+
+dt_Tracker.AsEnumerable().Any(Function(row) row.ItemArray.Any(Function(cell) cell.ToString().Contains(SRNumber))) 

@@ -1,0 +1,844 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="UpdatePositionInEBS" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:t="clr-namespace:Tfg_HR_Library;assembly=Tfg.HR.Library" xmlns:th="clr-namespace:Tfg_HR_Library.HRConnect__EBS_;assembly=Tfg.HR.Library" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_BusinesGrp" Type="InArgument(x:String)" />
+    <x:Property Name="in_EffectiveDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_PositionName" Type="InArgument(x:String)" />
+    <x:Property Name="in_ParentPosition" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>UpdatePositionInEBS_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>Tfg_HR_Library.HRConnect__EBS_</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>Tfg_HR_Library</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Activities.System.Date</x:String>
+      <x:String>UiPath.Core.Activities.DateTimeUtilities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>Tfg.HR.Library</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="UpdatePositionInEBS" sap:VirtualizedContainerService.HintSize="1190,2486" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Double" Name="intDelayTimeoutSec" />
+      <Variable x:TypeArguments="x:String" Default="ZA" Name="ShortName" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <t:Get_Short_Name_For_Business_Grp BusinessGroup="[in_BusinesGrp]" DisplayName="Get Short Name For Business Grp" sap:VirtualizedContainerService.HintSize="1056,57" sap2010:WorkflowViewState.IdRef="Get_Short_Name_For_Business_Grp_1" ShortName="[ShortName]" />
+    <uix:NCheckState DisplayName="Check App State 'Java Golbal Search" sap:VirtualizedContainerService.HintSize="1056,836" sap2010:WorkflowViewState.IdRef="NCheckState_1" Timeout="5" Version="V3">
+      <uix:NCheckState.IfExists>
+        <Sequence DisplayName="Target does appear" sap:VirtualizedContainerService.HintSize="552,587" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard AttachMode="SingleWindow" CloseMode="Never" DisplayName="Use Application: Oracle Applications - HCM*" sap:VirtualizedContainerService.HintSize="518,525" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="Simulate" OpenMode="Never" ScopeGuid="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V2" WindowResize="Maximize">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="484,169" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NCheckState DisplayName="Check App State - if Correct Res is open" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NCheckState_5" Timeout="5" Version="V3">
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <th:Switch_Responsibility___HRConnect DisplayName="Switch Responsibility - HRConnect" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Switch_Responsibility___HRConnect_4" Responsibility="[ShortName+&quot; HR Services System Support&quot;]" />
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="29, 90, 237, 16" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="[string.Format(&quot;&lt;java name='Navigator - {0} HR Services System Support' role='label' /&gt;&quot;, ShortName)]" Guid="7204c946-2cee-452f-8a7c-d40a6a598042" InformativeScreenshot="2b25884cbcd3eb2be3fbe523aad998ec.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications*' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                  <Sequence DisplayName="Open Search Window" sap:VirtualizedContainerService.HintSize="450,50" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Collapse All'" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_25" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="34, 370, 28, 28" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Navigator*' role='internal frame' /&gt;&lt;java name='Functions' role='page tab' /&gt;&lt;java name='Collapse All' role='push button' /&gt;" Guid="1d76cc83-9d3a-459d-bf79-4f02b9870d29" InformativeScreenshot="8c3483e97ef1e7517f214c57e2b8cdc0.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 04-Mar-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Double" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Work Structures'" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_26" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="66, 279, 228, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;java name='Navigator*' role='internal frame' /&gt;&lt;java name='Functions' role='page tab' /&gt;&lt;java name='Function List' role='list' /&gt;&lt;java name='*Work Structures' role='label' /&gt;" Guid="d2e2968d-4c89-4ea6-8c1b-ac5d3bb6f3b2" InformativeScreenshot="bb5c8ee2ecd0e53abd7fd90f16a28732.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 04-Mar-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Visible" WaitForReadyArgument="Complete" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Double" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Position'" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_27" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="66, 379, 228, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;java name='Navigator*' role='internal frame' /&gt;&lt;java name='Functions' role='page tab' /&gt;&lt;java name='Function List' role='list' /&gt;&lt;java name='*Position*' role='label' /&gt;" Guid="bbd664d4-bc66-442e-9e38-edcc00b40a63" ImageBase64="" InformativeScreenshot="86fcb1d47214d16ec2ee51da996332e5.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 04-Mar-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Double" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Description'" sap:VirtualizedContainerService.HintSize="416,180" sap2010:WorkflowViewState.IdRef="NClick_28" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="66, 359, 228, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;java name='Navigator*' role='internal frame' /&gt;&lt;java name='Functions' role='page tab' /&gt;&lt;java name='Function List' role='list' /&gt;&lt;java name='*Description' role='label' /&gt;" Guid="ccbad24e-89e9-4f95-b3fa-17b726f57b91" InformativeScreenshot="676c2d4f97a8cdbc62976030ec9ee8c3.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 04-Mar-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="0, 0, 1580, 760" IconBase64="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" InformativeScreenshot="05965e4b5eb5ef94c7118a989f31fd4b.png" Selector="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications*' /&gt;" Title="Oracle Applications - HCM DEV - (CLONED ON 17-OCT-2024)" />
+            </uix:NApplicationCard.TargetApp>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uix:NApplicationCard>
+        </Sequence>
+      </uix:NCheckState.IfExists>
+      <uix:NCheckState.IfNotExists>
+        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,169" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <th:Open_PositionDescription_HRConnect DisplayName="Open PositionDescription_HRConnect" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="Open_PositionDescription_HRConnect_1" in_BusinessGrp="[ShortName]" />
+          <th:Handle_HRConnect_PopUp_Login DisplayName="Handle HRConnect PopUp_Login" sap:VirtualizedContainerService.HintSize="416,50" sap2010:WorkflowViewState.IdRef="Handle_HRConnect_PopUp_Login_1" />
+        </Sequence>
+      </uix:NCheckState.IfNotExists>
+      <uix:NCheckState.Target>
+        <uix:TargetAnchorable DesignTimeRectangle="29, 90, 237, 16" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;java name='Navigator -*HR Services System Support' role='internal frame' /&gt;&lt;java name='Navigator*HR Services System Support' role='label' /&gt;" FuzzySelectorArgument="&lt;java name='Navigator - ZA HR Services System Support' role='internal frame' /&gt;&lt;java name='Navigator - ZA HR Services System Support' role='label' check:text='Navigator - ZA HR Services System Support' /&gt;" Guid="c8ac082b-d406-4b60-a7d9-944ddf57867b" ImageBase64="" InformativeScreenshot="2b25884cbcd3eb2be3fbe523aad998ec.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications*' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+      </uix:NCheckState.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NCheckState>
+    <uix:NApplicationCard AttachMode="SingleWindow" DisplayName="Oracle Applications - HCM" sap:VirtualizedContainerService.HintSize="1056,1570" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Never" ScopeGuid="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="1022,1256" sap2010:WorkflowViewState.IdRef="Sequence_30">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Search Position" sap:VirtualizedContainerService.HintSize="988,57" sap2010:WorkflowViewState.IdRef="Sequence_18">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="getPositionName" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Yes Date Change" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NClick_17" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="861, 403, 43, 28" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Position*' role='internal frame' /&gt;&lt;java name='Decision Your current effective date*Do you want to change it?' role='internal frame' /&gt;&lt;java name='Yes ALT Y' role='push button' /&gt;" Guid="26d22767-ae60-4ef4-89b2-c82cefdd247f" InformativeScreenshot="6ecf1ae4b7675863b9fb15f5b05a3921.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="[intDelayTimeoutSec*2]" DisplayName="Type Into Effective Date" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Text="[cdate(in_EffectiveDate.trim).ToString(&quot;dd-MMM-yyyy&quot;) + &quot;[k(Tab)]&quot;]" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="667, 373, 115, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Alter Effective Date' role='internal frame' /&gt;&lt;java name='Effective Date*' role='text' /&gt;" Guid="34ebeef0-767b-4407-b1d9-b9faae29760c" InformativeScreenshot="d266b0fa2e092968e65388c54f4cc475.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NTypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'OK Date Change" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NClick_18" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="542, 421, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Alter Effective Date*' role='internal frame' /&gt;&lt;java name='OK alt O' role='push button' /&gt;" Guid="5f9c61e0-ad65-4013-a5f9-1ef9a58d4e85" InformativeScreenshot="ee9f34e4fbc3d646f66ac1549e8ad9d0.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Name'" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="208, 237, 465, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Find Positions*' role='internal frame' /&gt;&lt;java name='Name*' role='text' /&gt;" Guid="48f74a14-8aba-46d1-9fa7-be7d8a07a118" InformativeScreenshot="6eaf2e0abc99b7a392030164c3d43790.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="[intDelayTimeoutSec*2]" DeselectAfter="False" DisplayName="Type Into Position Code" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Text="[in_PositionName.Trim.Split(&quot;.&quot;c).First.ToString.Trim]" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="598, 338, 335, 26" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Find Positions' role='internal frame' /&gt;&lt;java name='TFG Position*' role='internal frame' /&gt;&lt;java name='Position Number*' role='text' /&gt;" Guid="03287caf-7853-4cce-a7e6-f310cc706da5" InformativeScreenshot="0cce051e861787503a9e6694ab7af506.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NTypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Name'" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NClick_22" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="598, 338, 335, 26" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Find Positions' role='internal frame' /&gt;&lt;java name='TFG Position*' role='internal frame' /&gt;&lt;java name='Position Number*' role='text' /&gt;" Guid="8a45b5c6-025f-4a7e-b576-2f0b8ea8c10b" InformativeScreenshot="88b55a261168253166e6e5391f6fd10e.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_4" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Shortcuts="[d(hk)][k(tab)][u(hk)]" Version="V4">
+                <uix:NKeyboardShortcuts.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NKeyboardShortcuts.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NKeyboardShortcuts>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="[intDelayTimeoutSec*2]" DisplayName="Type Into Position Name" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="HardwareEvents" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Text="[in_PositionName.Trim.Split(&quot;.&quot;c).last.ToString.Trim+ &quot;[k(Tab)]&quot;]" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="598, 364, 335, 26" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Find Positions' role='internal frame' /&gt;&lt;java name='TFG Position*' role='internal frame' /&gt;&lt;java name='Position Name*' role='text' /&gt;" Guid="df65daba-8677-432d-a81b-48ede063a414" InformativeScreenshot="11bd2a110adc426a0a79ca8d992a9f1c.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NTypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts 'Position Name'" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" InteractionMode="WindowMessages" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Shortcuts="[d(hk)][k(tab)][u(hk)]" Version="V4">
+                <uix:NKeyboardShortcuts.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="590, 376, 335, 26" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Find Positions' role='internal frame' /&gt;&lt;java name='TFG Position*' role='internal frame' /&gt;&lt;java name='Position Name*' role='text' /&gt;" Guid="c00a34af-5ced-4a5c-8203-e075da11544c" ImageBase64="" InformativeScreenshot="55981351cfcaa0eca98b30d06ecd78db.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NKeyboardShortcuts.Target>
+                <uix:NKeyboardShortcuts.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NKeyboardShortcuts.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NKeyboardShortcuts>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Ok - Put Position'" sap:VirtualizedContainerService.HintSize="450,84" sap2010:WorkflowViewState.IdRef="NClick_21" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="533, 424, 94, 28" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Find Positions' role='internal frame' /&gt;&lt;java name='TFG Position*' role='internal frame' /&gt;&lt;java name='OK ALT O' role='push button' /&gt;" Guid="fb9a68cd-fa74-423d-ae88-789a297fd48b" InformativeScreenshot="772980cd1c05e6a662d8475a78756124.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Find" sap:VirtualizedContainerService.HintSize="450,84" sap2010:WorkflowViewState.IdRef="NClick_23" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="561, 367, 112, 28" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Find Positions' role='internal frame' /&gt;&lt;java name='Find alt i' role='push button' /&gt;" Guid="80f14b63-4df1-484c-b82b-c5927260c625" InformativeScreenshot="bd9fbc0d0b18fb0799c02594a341aae5.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NGetAttributeGeneric x:TypeArguments="x:String" Attribute="text" DisplayName="Get Attribute Feective Name" sap:VirtualizedContainerService.HintSize="450,84" sap2010:WorkflowViewState.IdRef="NGetAttributeGeneric`1_1" Result="[getPositionName]" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NGetAttributeGeneric.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="211, 221, 403, 24" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;java name='Date Effective Name*' role='text' /&gt;" Guid="d7fac8c9-d9f9-4967-b4cf-0dc836234e57" InformativeScreenshot="10ccc29ae60938bf337c77546943bd5f.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NGetAttributeGeneric.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NGetAttributeGeneric>
+              <If Condition="[getPositionName.ToString.trim=in_PositionName]" DisplayName="If Found" sap:VirtualizedContainerService.HintSize="450,1171" sap2010:WorkflowViewState.IdRef="If_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Position Found, Updating Parent Position&quot;]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,784" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message - Error" sap:VirtualizedContainerService.HintSize="382,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Position Not Found in EBS&quot;]" />
+                    <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Error Ok" sap:VirtualizedContainerService.HintSize="382,189" sap2010:WorkflowViewState.IdRef="NClick_24" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="815, 461, 72, 28" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Error APP-FND*: You can only query existing flexfield code combinations. You entered query criteria in your flexfield that does not identify an existing code combination. Therefore, your query will not return any rows.&amp;#xA;&amp;#xA;Enter a valid code combination, or enter only the flexfield segment values you know, or do not enter any values in the flexfield.' role='internal frame' /&gt;&lt;java name='OK ALT O' role='push button' /&gt;" Guid="9d079e2f-2789-4cb3-997c-d872e31db9cc" InformativeScreenshot="58a2b8ab367b5f762951e20216fd271e.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                      </uix:NClick.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NClick>
+                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="382,247" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_5" Shortcuts="[d(hk)][k(f4)][u(hk)]" Version="V4">
+                      <uix:NKeyboardShortcuts.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NKeyboardShortcuts.VerifyOptions>
+                    </uix:NKeyboardShortcuts>
+                    <Throw DisplayName="Throw - Position Not Found" Exception="[new SystemException(&quot;Position Not Found (EBS)&quot;)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+            <Sequence DisplayName="Update Parent Position" sap:VirtualizedContainerService.HintSize="988,1137" sap2010:WorkflowViewState.IdRef="Sequence_31">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click [ '" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="NClick_29" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="674, 438, 19, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Position*' role='internal frame' /&gt;&lt;java name='Position Details*' role='page tab' /&gt;&lt;java name='[ ' role='text' /&gt;" Guid="6e1a551a-41a8-4ed4-90cf-0d722cb976c1" ImageBase64="" InformativeScreenshot="d32b96e4b6442bb44cf110bbe6cabb0a.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="[intDelayTimeoutSec*2]" DisplayName="Type Into Parent Position Name" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="HardwareEvents" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Text="[in_ParentPosition+ &quot;.[k(Tab)]&quot;]" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="623, 403, 660, 26" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Position*' role='internal frame' /&gt;&lt;java name='Additional Position Details' role='internal frame' /&gt;&lt;java name='Parent Position*' role='text' /&gt;" Guid="3f34f2a7-10ef-4be5-9c00-f5d80174213c" InformativeScreenshot="e122382b54705d93427e07e5cce2a22f.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NTypeInto.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click 'Parent Position'" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="NClick_31" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="623, 403, 660, 26" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;java name='Position*' role='internal frame' /&gt;&lt;java name='Additional Position Details' role='internal frame' /&gt;&lt;java name='Parent Position*' role='text' /&gt;" Guid="e1e25eba-a108-4db9-bbc0-65fbb93d6b12" InformativeScreenshot="b0c09ab350d7658c83c7c527901116f2.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_7" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Shortcuts="[d(hk)][k(tab)][u(hk)]" Version="V4">
+                <uix:NKeyboardShortcuts.VerifyOptions>
+                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionOptions.Retry>
+                    <uix:VerifyExecutionOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionOptions.Timeout>
+                  </uix:VerifyExecutionOptions>
+                </uix:NKeyboardShortcuts.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NKeyboardShortcuts>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Ok On Parent Position Update Window" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="NClick_30" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="875, 515, 55, 28" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Position*' role='internal frame' /&gt;&lt;java name='Additional Position Details' role='internal frame' /&gt;&lt;java name='OK ALT O' role='push button' /&gt;" Guid="e5539ca2-e289-465f-8743-4588b02d16b7" InformativeScreenshot="e8c9aa64c7e1cb0495a117311d3b2c04.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NCheckState DisplayName="Check App State 'Parent Position'" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Timeout="5" Version="V4">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,655" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message - Parent Position Not Found (EBS)" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;Parent Position Not Found (EBS)&quot;]" />
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Cancel Search Window (Parent Position)" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_32" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="408, 616, 54, 27" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Position*' role='internal frame' /&gt;&lt;java name='Parent Position' role='internal frame' /&gt;&lt;java name='Cancel ALT C' role='push button' /&gt;" Guid="550e225b-951d-4385-8dcb-3f765e4844f3" InformativeScreenshot="6d6c3e59dc5c242b526633800af56e87.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                      </uix:NClick.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NClick>
+                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DelayAfter="[1*intDelayTimeoutSec]" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_8" Shortcuts="[d(hk)][k(f4)][u(hk)]" Version="V4">
+                      <uix:NKeyboardShortcuts.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NKeyboardShortcuts.VerifyOptions>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NKeyboardShortcuts>
+                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_9" Shortcuts="[d(hk)][k(f4)][u(hk)]" Version="V4">
+                      <uix:NKeyboardShortcuts.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NKeyboardShortcuts.VerifyOptions>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NKeyboardShortcuts>
+                    <Throw DisplayName="Throw - Parent Position Not Found" Exception="[new SystemException(&quot;Parent Position Not Found (EBS)&quot;)]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,139" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Pick sap:VirtualizedContainerService.HintSize="416,77" sap2010:WorkflowViewState.IdRef="Pick_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <PickBranch DisplayName="PickBranch - Update" sap:VirtualizedContainerService.HintSize="240,52" sap2010:WorkflowViewState.IdRef="PickBranch_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <PickBranch.Trigger>
+                          <uix:NCheckState DisplayName="Check App State 'Update ALT U'" sap:VirtualizedContainerService.HintSize="201,52" sap2010:WorkflowViewState.IdRef="NCheckState_7" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Timeout="5" Version="V4">
+                            <uix:NCheckState.Target>
+                              <uix:TargetAnchorable DesignTimeRectangle="404, 317, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Update*' role='push button' /&gt;" Guid="92f2fa78-5962-436a-baaf-3697e8be05b4" InformativeScreenshot="3c0fed064b28551e81dab6fb57121bfe.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NCheckState.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NCheckState>
+                        </PickBranch.Trigger>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Update" sap:VirtualizedContainerService.HintSize="334,157" sap2010:WorkflowViewState.IdRef="NClick_33" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="404, 317, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Update*' role='push button' /&gt;" Guid="9190d43d-6704-4809-b9dc-23e95b5731de" InformativeScreenshot="2c948ee8d2794ed6a0192ef6b9795e61.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                      </PickBranch>
+                      <PickBranch DisplayName="PickBranch - Correction" sap:VirtualizedContainerService.HintSize="255,52" sap2010:WorkflowViewState.IdRef="PickBranch_2">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <PickBranch.Trigger>
+                          <Sequence DisplayName="Correction" sap:VirtualizedContainerService.HintSize="588,456" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Delay DisplayName=" Delay 3 second - Correction" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="554,122" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                            <uix:NCheckState DisplayName="Check App State 'Correction ALT C'" sap:VirtualizedContainerService.HintSize="554,272" sap2010:WorkflowViewState.IdRef="NCheckState_8" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Timeout="5" Version="V4">
+                              <uix:NCheckState.Target>
+                                <uix:TargetAnchorable DesignTimeRectangle="404, 317, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Correction*' role='push button' /&gt;" Guid="75202ee1-66b3-471f-b14b-781b27069e71" ImageBase64="" InformativeScreenshot="fa9b74042c473799c9cd9d39851510f1.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                              </uix:NCheckState.Target>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </uix:NCheckState>
+                          </Sequence>
+                        </PickBranch.Trigger>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Correction" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="NClick_35" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="404, 365, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Correction*' role='push button' /&gt;" Guid="9190d43d-6704-4809-b9dc-23e95b5731de" ImageBase64="" InformativeScreenshot="184a3bd1f07a8283a818d0dc504b2e86.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                      </PickBranch>
+                      <PickBranch DisplayName="PickBranch - Replace" sap:VirtualizedContainerService.HintSize="241,52" sap2010:WorkflowViewState.IdRef="PickBranch_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <PickBranch.Trigger>
+                          <uix:NCheckState DisplayName="Check App State  - Replace" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Timeout="5" Version="V4">
+                            <uix:NCheckState.Target>
+                              <uix:TargetAnchorable DesignTimeRectangle="404, 365, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Replace*' role='push button' /&gt;" Guid="75202ee1-66b3-471f-b14b-781b27069e71" ImageBase64="" InformativeScreenshot="c96a3b3ce38634aaa8ebf7d6fa38ea39.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NCheckState.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NCheckState>
+                        </PickBranch.Trigger>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Replace" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="NClick_36" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="404, 365, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Replace*' role='push button' /&gt;" Guid="9190d43d-6704-4809-b9dc-23e95b5731de" ImageBase64="" InformativeScreenshot="f35c684a2bbd5ed28b00010b0f53efdf.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                      </PickBranch>
+                      <PickBranch DisplayName="PickBranch - Insert" sap:VirtualizedContainerService.HintSize="240,52" sap2010:WorkflowViewState.IdRef="PickBranch_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <PickBranch.Trigger>
+                          <Sequence DisplayName="Sequence - Insert" sap:VirtualizedContainerService.HintSize="416,234" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Delay DisplayName=" Delay 3 second - Insert" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="382,122" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                            <uix:NCheckState DelayBefore="[3*intDelayTimeoutSec]" DisplayName="Check App State Insert" sap:VirtualizedContainerService.HintSize="382,50" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Timeout="5" Version="V4">
+                              <uix:NCheckState.Target>
+                                <uix:TargetAnchorable DesignTimeRectangle="404, 365, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Insert*' role='push button' /&gt;" Guid="75202ee1-66b3-471f-b14b-781b27069e71" ImageBase64="" InformativeScreenshot="c96a3b3ce38634aaa8ebf7d6fa38ea39.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                              </uix:NCheckState.Target>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </uix:NCheckState>
+                          </Sequence>
+                        </PickBranch.Trigger>
+                        <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*1]" DisplayName="Click Insert" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="NClick_37" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="404, 365, 134, 29" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java name='Choose an option*' role='internal frame' /&gt;&lt;java name='Insert*' role='push button' /&gt;" Guid="9190d43d-6704-4809-b9dc-23e95b5731de" ImageBase64="" InformativeScreenshot="f35c684a2bbd5ed28b00010b0f53efdf.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                          </uix:NClick.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NClick>
+                      </PickBranch>
+                    </Pick>
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="24, 123, 646, 438" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;java name='Position*' role='internal frame' /&gt;&lt;java name='Parent Position' role='internal frame' /&gt;" Guid="59194acf-bd1d-46e3-9869-651e3cebc48c" ImageBase64="" InformativeScreenshot="cf5befc613f15769776a873a86861c23.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayAfter="[intDelayTimeoutSec*3]" DelayBefore="[intDelayTimeoutSec*1]" DisplayName="Click Save" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="NClick_39" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="105, 63, 26, 22" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;java cls='ToolBar' idx='20' role='tool bar' /&gt;&lt;java name='Save' role='push button' /&gt;" Guid="372a1d55-70c3-480c-9b35-f470f6ad3c87" InformativeScreenshot="00c396c1881fa94f255e03102cb9829f.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" WaitForReadyArgument="Complete" />
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NCheckState DisplayName="Check App State 'Parent Position'" sap:VirtualizedContainerService.HintSize="954,651" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="4fcec291-4f61-4510-a9ca-b952883c9eca" Timeout="7" Version="V4">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,287" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_11" Shortcuts="[d(hk)][k(f4)][u(hk)]" Version="V4">
+                      <uix:NKeyboardShortcuts.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NKeyboardShortcuts.VerifyOptions>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NKeyboardShortcuts>
+                    <ui:LogMessage DisplayName="Log Message - Update Position Sucesss" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Parent Position Updated Sucessfully by BOT&quot;]" />
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,409" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <th:Close_HRConnect_JavaOnly DisplayName="Close HRConnect_JavaOnly" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="Close_HRConnect_JavaOnly_1" />
+                    <ui:LogMessage DisplayName="Log Message - &quot;Parent Position Update (EBS) Failed&quot;" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Fatal" Message="[&quot;Parent Position Update (EBS) Failed&quot;]" />
+                    <Throw DisplayName="Throw - Parent Position Update (EBS) Failed" Exception="[New SystemException(&quot;Parent Position Update (EBS) Failed&quot;)]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="18, 694, 1331, 17" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;java name='FRM-*: Transaction complete: 1 records applied and saved.' role='label' /&gt;" Guid="3db96c01-20cb-4eca-8c1f-313afbcc8a5f" InformativeScreenshot="85080d3842b1f93cef15bd05552e26f0.png" ScopeSelectorArgument="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications - HCM DEV - (CLONED ON 07-May-2025)' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                </uix:NCheckState.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NCheckState>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 1580, 760" IconBase64="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" InformativeScreenshot="05965e4b5eb5ef94c7118a989f31fd4b.png" Selector="&lt;wnd app='jp2launcher.exe' cls='SunAwtFrame' title='Oracle Applications*' /&gt;" Title="Oracle Applications - HCM DEV - (CLONED ON 17-OCT-2024)" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
