@@ -29,14 +29,6 @@ steps:
     orchestratorConnection: 'UiPathOrch_lib'
     outputPath: '$(Build.ArtifactStagingDirectory)\Output'
 
-- task: UiPathDeploy@5
-  inputs:
-    orchestratorConnection: 'UiPathOrch_lib'
-    packagesPath: '$(Build.ArtifactStagingDirectory)\Output'
-    folderName: 'Prem'
-    environments: 'prod'
-
-
 
 - task: PublishBuildArtifacts@1
   inputs:
